@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Random Key</title>
-  <style>body { background: #1e1e1e; color: white; font-size: 20px; text-align: center; margin-top: 100px; }</style>
+  <title>Key Generator</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: white;
+      font-family: monospace;
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .key {
+      padding: 20px;
+      border: 2px solid #A259FF;
+      border-radius: 8px;
+      background-color: #2d2d30;
+    }
+  </style>
 </head>
 <body>
-  <div id="key"></div>
+  <div class="key" id="keyBox">Generating key...</div>
+
   <script>
-    const keys = [
-      "akNxZjrydZIXEyYMzowGhsbkkmpmsJjS",
-      "aenbwcujFuyywSSyiGenzVdnYGlAdyiC",
-      "hyHJvWTouQUKHoeWooJDbZnylBCmxVKJ"
-    ];
-    document.getElementById("key").textContent =
-      keys[Math.floor(Math.random() * keys.length)];
+    function generateRandomKey(length = 32) {
+      const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      let key = "";
+      for (let i = 0; i < length; i++) {
+        key += charset.charAt(Math.floor(Math.random() * charset.length));
+      }
+      return key;
+    }
+
+    document.getElementById("keyBox").textContent = generateRandomKey();
   </script>
 </body>
 </html>
